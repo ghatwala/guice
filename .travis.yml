@@ -22,6 +22,10 @@ env:
     - LABEL=docs       CMD="ant javadoc jdiff" INSTALL="/bin/true"
     - LABEL=mvn        CMD="mvn -B -P!standard-with-extra-repos verify --fail-at-end -Dsource.skip=true -Dmaven.javadoc.skip=true" INSTALL="mvn -P!standard-with-extra-repos dependency:go-offline test clean --quiet --fail-never -DskipTests=true"
 
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y openjdk-9-jdk openjdk-10-jdk openjdk-11-jdk openjdk-12-jdk openjdk-13-jdk
+  
 install:
   - ${INSTALL}
 
